@@ -1304,6 +1304,10 @@ PyArray_DiscoverDTypeAndShape(
         }
     }
 
+    if (requested_descr != NULL && requested_descr->type_num == NPY_OBJECT) {
+        max_dims = 1;
+    }
+
     int ndim = PyArray_DiscoverDTypeAndShape_Recursive(
             obj, 0, max_dims, out_descr, out_shape, &coercion_cache,
             fixed_DType, &flags, copy);
